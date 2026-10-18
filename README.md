@@ -27,10 +27,15 @@ LazyVim ベースの Neovim 設定。[Omarchy](https://omarchy.org/) 標準の N
 
 ## セットアップ
 
+リポジトリは public。clone の URL は 2 通りあり、以下の手順では SSH を使っている。
+
+- SSH: `git@github.com:fieldville/nvim.git` — push する自分のマシン向け。GitHub に SSH 鍵の登録が必要
+- HTTPS: `https://github.com/fieldville/nvim.git` — 社用マシンなど鍵を登録しないマシン向け。clone と pull は認証なしでできる (push は不可)
+
 ### host 版 (デフォルト)
 
 ```sh
-git clone git@github.com:fieldville/nvim.git ~/.fieldville/nvim
+git clone git@github.com:fieldville/nvim.git ~/.fieldville/nvim   # HTTPS なら https://github.com/fieldville/nvim.git
 ~/.fieldville/nvim/setup
 ```
 
@@ -64,7 +69,7 @@ Windows では `~/.config/nvim` の代わりに `%LOCALAPPDATA%\nvim` が設定�
    scoop install CascadiaMono-NF      # アイコン表示用。ターミナルのフォントに設定する
    ```
 
-2. GitHub に SSH 鍵を登録する (未登録のマシンのみ)
+2. GitHub に SSH 鍵を登録する (SSH で clone するマシンのみ。HTTPS なら不要)
 
    ```powershell
    ssh-keygen -t ed25519                              # 鍵がなければ作る
@@ -75,7 +80,7 @@ Windows では `~/.config/nvim` の代わりに `%LOCALAPPDATA%\nvim` が設定�
 3. clone して `%LOCALAPPDATA%\nvim` をリポジトリに向ける
 
    ```powershell
-   git clone git@github.com:fieldville/nvim.git $env:USERPROFILE\.fieldville\nvim
+   git clone git@github.com:fieldville/nvim.git $env:USERPROFILE\.fieldville\nvim   # HTTPS なら https://github.com/fieldville/nvim.git
 
    $target = "$env:LOCALAPPDATA\nvim"
    if (Test-Path $target) { Rename-Item $target "nvim.backup.$(Get-Date -Format yyyyMMdd-HHmmss)" }
