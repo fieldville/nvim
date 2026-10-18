@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# host 版セットアップ (デフォルト): ~/.config/nvim をこのリポジトリに向けてプラグインを同期する
+# docker 版は docker/setup を参照
+set -euo pipefail
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+target="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+
+if [ "$target" -ef "$repo" ]; then
+  echo "already linked: $target"
+else
+  if [ -e "$target" ] || [ -L "$target" ]; then
+    backup="$target.backup.$(date +%Y%m%d-%H%M%S)"
+    mv "$target" "$backup"
+    echo "backed up: $backup"
+  fi
+  mkdir -p "$(dirname "$target")"
+  ln -s "$repo" "$target"
+  echo "linked: $target -> $repo"
+fi
+
+nvim --headless "+Lazy! sync" +qa
+echo "done"

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# docker 版セットアップ: lvim を ~/.local/bin に置き、イメージをビルドする
+set -euo pipefail
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+mkdir -p ~/.local/bin
+ln -sfn "$here/lvim" ~/.local/bin/lvim
+echo "linked: ~/.local/bin/lvim -> $here/lvim"
+
+# shellcheck source=alias.sh
+. "$here/alias.sh"
+lvim-build "$@"
+
+echo "done. .bashrc に以下を追加してください:"
+echo "  [ -f $here/alias.sh ] && . $here/alias.sh"
