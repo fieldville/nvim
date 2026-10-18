@@ -94,7 +94,7 @@ Windows では `~/.config/nvim` の代わりに `%LOCALAPPDATA%\nvim` が設定�
 
 - プラグインや Mason のバイナリは `%LOCALAPPDATA%\nvim-data` に入る。リポジトリには含まれない
 - 更新は `git -C $env:USERPROFILE\.fieldville\nvim pull` のあと `nvim` 内で `:Lazy sync`
-- Git for Windows は既定で `core.autocrlf=true` のため、作業ツリーは CRLF でチェックアウトされる。Neovim の動作には影響しないが、WSL 側からこのディレクトリを `git status` すると全ファイルが変更扱いに見える。気になるなら `git clone -c core.autocrlf=false ...` で clone する
+- 改行コードは `.gitattributes` で LF に固定してあるので、Git for Windows の `core.autocrlf` の設定によらず LF でチェックアウトされる
 - docker 版 (`lvim`) は Linux / WSL 用。Windows 版にはない
 
 ## 運用
