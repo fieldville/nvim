@@ -1,0 +1,2 @@
+# 改行はすべて LF。Windows の core.autocrlf に左右されないようにする
+* text=auto eol=lf
