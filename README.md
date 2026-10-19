@@ -34,6 +34,8 @@ LazyVim ベースの Neovim 設定。[Omarchy](https://omarchy.org/) 標準の N
 
 ### host 版 (デフォルト)
 
+Neovim 0.12 以上が必要。`setup` は Neovim 自体はインストールしない。0.11 以下だと LazyVim が nvim-treesitter を古いコミットに固定するため、`lazy-lock.json` がマシン間で食い違う (apt の Neovim は古いことが多いので、[GitHub Releases](https://github.com/neovim/neovim/releases/latest) のものを使う)。
+
 ```sh
 git clone git@github.com:fieldville/nvim.git ~/.fieldville/nvim   # HTTPS なら https://github.com/fieldville/nvim.git
 ~/.fieldville/nvim/setup
