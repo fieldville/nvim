@@ -5,6 +5,9 @@
 vim.opt.relativenumber = false
 vim.g.autoformat = false
 
+-- 検索がファイル末尾で折り返さない
+vim.opt.wrapscan = false
+
 -- docker 版だけ上書きコピーされる設定 (docker/nvim/lua/config/docker.lua) があれば読む
 if vim.uv.fs_stat(vim.fn.stdpath("config") .. "/lua/config/docker.lua") then
   require("config.docker")
