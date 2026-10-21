@@ -15,7 +15,7 @@ LazyVim ベースの Neovim 設定。[Omarchy](https://omarchy.org/) 標準の N
 ├── init.lua
 ├── lazyvim.json       # extras: neo-tree (Omarchy と同じ)
 ├── lua/config/        # options.lua: relativenumber off, autoformat off (Omarchy と同じ)
-├── lua/plugins/       # omarchy.lua: NEWS 通知 off, スクロールアニメーション off / dashboard.lua: 起動画面 off
+├── lua/plugins/       # omarchy.lua: NEWS 通知 off, スクロールアニメーション off / dashboard.lua: 起動画面 off / notifier.lua: 通知の表示時間 10 秒
 ├── setup              # host 版セットアップ
 └── docker/            # docker 版
     ├── Dockerfile
