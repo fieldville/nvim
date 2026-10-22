@@ -1,10 +1,13 @@
-# docker 版: .bashrc から source する
+# docker 版: .bashrc / .zshrc から source する
 #   [ -f ~/.config/nvim/docker/alias.sh ] && . ~/.config/nvim/docker/alias.sh
+
+# source 時にこのファイルの場所を覚えておく (bash: BASH_SOURCE, zsh: $0)
+_LVIM_ALIAS_SRC="${BASH_SOURCE[0]:-$0}"
 
 # LazyVim Docker イメージのビルド (例: lvim-build --no-cache)
 lvim-build() {
   local repo
-  repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  repo="$(cd "$(dirname "$_LVIM_ALIAS_SRC")/.." && pwd)"
 
   echo "Building lazyvim-sandbox with UID=$(id -u) GID=$(id -g)..."
   docker build \
