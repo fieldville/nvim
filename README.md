@@ -50,7 +50,7 @@ git clone git@github.com:fieldville/nvim.git ~/.fieldville/nvim   # HTTPS なら
 lvim [file...]                       # コンテナで起動
 ```
 
-`.bashrc` に以下を足すと、`lvim-build` 関数とホストのクリップボード中継 (socat) が使えるようになる。
+`.bashrc` に以下を足すと、`lvim-build` 関数とホストのクリップボード中継 (socat) が使えるようになる。ホストに `socat` が必要 (`sudo apt install socat` / `brew install socat`)。入っていないと中継が黙って起動せず、コンテナ内で `clipboard: error invoking nc` になる。
 
 ```sh
 [ -f ~/.fieldville/nvim/docker/alias.sh ] && . ~/.fieldville/nvim/docker/alias.sh
