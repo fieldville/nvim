@@ -5,6 +5,9 @@
 vim.opt.relativenumber = false
 vim.g.autoformat = false
 
+-- 通常のヤンク/削除/ペーストでシステムクリップボードを使わない ("+ / "* を明示したときだけ)
+vim.opt.clipboard = ""
+
 -- 検索がファイル末尾で折り返さない
 vim.opt.wrapscan = false
 
