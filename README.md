@@ -15,7 +15,7 @@ LazyVim ベースの Neovim 設定。[Omarchy](https://omarchy.org/) 標準の N
 ├── init.lua
 ├── lazyvim.json       # extras: neo-tree (Omarchy と同じ)
 ├── lua/config/        # options.lua: relativenumber off, autoformat off (Omarchy と同じ), nowrapscan, Windows でワイルドカード引数を展開
-├── lua/plugins/       # omarchy.lua: NEWS 通知 off, スクロールアニメーション off / dashboard.lua: 起動画面 off / notifier.lua: 通知の表示時間 10 秒
+├── lua/plugins/       # omarchy.lua: NEWS 通知 off, スクロールアニメーション off / dashboard.lua: 起動画面 off / notifier.lua: 通知の表示時間 10 秒 / no-nerd-font.lua: Nerd Font なしのマシン用のアイコン置き換え (環境変数で有効化)
 ├── setup              # host 版セットアップ
 └── docker/            # docker 版
     ├── Dockerfile
@@ -104,6 +104,19 @@ Windows では `~/.config/nvim` の代わりに `%LOCALAPPDATA%\nvim` が設定�
 - 改行コードは `.gitattributes` で LF に固定してあるので、Git for Windows の `core.autocrlf` の設定によらず LF でチェックアウトされる
 - PowerShell はワイルドカードを展開しないので、`nvim *.dmp` は `lua/config/options.lua` で起動時に展開している (しないと E303 で開けない)
 - docker 版 (`lvim`) は Linux / WSL 用。Windows 版にはない
+
+### Nerd Font を入れられないマシン
+
+LazyVim のアイコンは Nerd Font 前提で、入っていないターミナルでは豆腐 (□ や ?) になる。社用マシンなどフォントを持ち込めない環境では、環境変数 `NVIM_NO_NERD_FONT` を設定する。`lua/plugins/no-nerd-font.lua` が効いて、アイコンが標準フォントで出る文字 (`E` `W` `+` `-` `>` など) に置き換わる。未設定のマシンでは何も変わらない。
+
+```sh
+export NVIM_NO_NERD_FONT=1     # そのマシンだけの設定 (~/.profile.private など) に書く
+```
+
+- Windows は `setx NVIM_NO_NERD_FONT 1` (新しく開いたターミナルから有効)。この場合「Windows 版」手順の `CascadiaMono-NF` は入れなくてよい
+- docker 版は `lvim` がホストの値をコンテナに渡す
+- 置き換わらないのは 2 か所だけ: 差分プレビュー (`<leader>gs` など) の見出しの印と、undo 一覧 (`<leader>su`) の現在位置の印。snacks.nvim に直書きされていて設定では変えられない
+- LazyVim やプラグインの更新でアイコンが増えると、新しい豆腐が出ることがある。そのときは `no-nerd-font.lua` に足す
 
 ## 運用
 
