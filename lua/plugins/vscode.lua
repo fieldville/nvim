@@ -122,13 +122,18 @@ vim.api.nvim_create_autocmd("User", {
       end, { desc = m[4] })
     end
 
-    -- カーソル下の単語を検索欄に入れてプロジェクト内検索 (Grep word)
-    vim.keymap.set("n", "<leader>sw", function()
-      vscode.action("workbench.action.findInFiles", { args = { { query = vim.fn.expand("<cword>") } } })
-    end, { desc = "Grep Word" })
-    vim.keymap.set("n", "<leader>sW", function()
-      vscode.action("workbench.action.findInFiles", { args = { { query = vim.fn.expand("<cword>") } } })
-    end, { desc = "Grep Word" })
+    -- カーソル下の単語 (選択中は選択文字列) を検索欄に入れてプロジェクト内検索 (Grep word)。
+    -- ビジュアルモードにも割り当てないと LazyVim の picker 用マッピングが残り、VSCode 内では何も起きない
+    local function grep_word()
+      local mode = vim.fn.mode()
+      local query = vim.fn.expand("<cword>")
+      if mode == "v" or mode == "V" or mode == "\22" then
+        query = table.concat(vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = mode }), "\n")
+      end
+      vscode.action("workbench.action.findInFiles", { args = { { query = query } } })
+    end
+    vim.keymap.set({ "n", "x" }, "<leader>sw", grep_word, { desc = "Grep Word" })
+    vim.keymap.set({ "n", "x" }, "<leader>sW", grep_word, { desc = "Grep Word" })
   end,
 })
 
