@@ -46,6 +46,10 @@ local maps = {
   { "n", "<leader>sc", "workbench.action.showCommands", "Command History" },
   { "n", "<leader>:", "workbench.action.showCommands", "Command History" },
   { "n", "<leader>su", "timeline.focus", "Undo History" }, -- ファイルごとの保存履歴 (タイムライン)
+  -- quickfix の代わりにプロジェクト内検索の結果を順にたどる (VSCode の F4 / Shift+F4 と同じ)。
+  -- 移動先では VSCode が一致箇所を選択する (= ビジュアルモードになる) ので、続けて押せるようビジュアルモードにも割り当てる
+  { { "n", "x" }, "]q", "search.action.focusNextSearchResult", "Next Quickfix" },
+  { { "n", "x" }, "[q", "search.action.focusPreviousSearchResult", "Prev Quickfix" },
 
   -- バッファ = VSCode のエディタタブ
   { "n", "<leader>bd", "workbench.action.closeActiveEditor", "Delete Buffer" },
