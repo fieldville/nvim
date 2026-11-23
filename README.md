@@ -118,6 +118,16 @@ export NVIM_NO_NERD_FONT=1     # そのマシンだけの設定 (~/.profile.priv
 - 置き換わらないのは 2 か所だけ: 差分プレビュー (`<leader>gs` など) の見出しの印と、undo 一覧 (`<leader>su`) の現在位置の印。snacks.nvim に直書きされていて設定では変えられない
 - LazyVim やプラグインの更新でアイコンが増えると、新しい豆腐が出ることがある。そのときは `no-nerd-font.lua` に足す
 
+### VSCode (vscode-neovim) の中で使う
+
+VSCode の拡張 [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim) は `~/.config/nvim` をそのまま読むので、この設定が VSCode の中でも動く。ただし VSCode 内では LazyVim が UI 系プラグイン (neo-tree, picker, LSP, gitsigns, trouble など) を止めるため、`<leader>e` や `<leader>ff` などは押しても何も起きなくなる。`lua/plugins/vscode.lua` が同じキーを VSCode 側の相当機能に割り当て直している。ターミナルの `nvim` では何もしない。
+
+- 割り当ての一覧は `lua/plugins/vscode.lua` の `maps` を見る (エクスプローラー、ファイルを開く、検索、タブ、LSP、診断、git、表示切り替え)
+- `<leader>sw` / `<leader>sW` はカーソル下の単語をプロジェクト内検索の検索欄に入れて開く。文字列を選択しているとき (マウスでの選択も含む) は選択した文字列で検索する
+- ビジュアルモードでも使うキーは、ビジュアルモードにも割り当てる。ノーマルモードだけだと、選択中は LazyVim の picker 用の割り当てが残り、何も起きない
+- 挿入モードのキーと VSCode 本体の設定 (カッコの自動補完 off など) は Neovim からは変えられない。dotfiles の `vscode/keybindings.json` と `vscode/settings.json` に書いてある
+- `vscode.lua` を変えたら、VSCode のコマンドパレットで「Neovim: Restart」を実行すると反映される
+
 ## 運用
 
 - **設定を変える**: `lua/config/options.lua` と `lua/plugins/` だけを編集してコミットする。それ以外のファイルは LazyVim starter のままにしておく
