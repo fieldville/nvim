@@ -124,6 +124,7 @@ VSCode の拡張 [vscode-neovim](https://github.com/vscode-neovim/vscode-neovim)
 
 - 割り当ての一覧は `lua/plugins/vscode.lua` の `maps` を見る (エクスプローラー、ファイルを開く、検索、タブ、LSP、診断、git、表示切り替え)
 - `<leader>sw` / `<leader>sW` はカーソル下の単語をプロジェクト内検索の検索欄に入れて開く。文字列を選択しているとき (マウスでの選択も含む) は選択した文字列で検索する
+- `]q` / `[q` はプロジェクト内検索の次 / 前の結果へ移動する (VSCode の `F4` / `Shift+F4` と同じ)。エディタにフォーカスがあるときだけ効くので、`<leader>sw` の直後 (検索欄にフォーカスがある) は `F4` で 1 件目に移動し、そのあと `]q` / `[q` でたどる。移動先では一致箇所が選択された状態になる
 - ビジュアルモードでも使うキーは、ビジュアルモードにも割り当てる。ノーマルモードだけだと、選択中は LazyVim の picker 用の割り当てが残り、何も起きない
 - 挿入モードのキーと VSCode 本体の設定 (カッコの自動補完 off など) は Neovim からは変えられない。dotfiles の `vscode/keybindings.json` と `vscode/settings.json` に書いてある
 - `vscode.lua` を変えたら、VSCode のコマンドパレットで「Neovim: Restart」を実行すると反映される
