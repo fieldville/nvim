@@ -14,11 +14,11 @@ local vscode = require("vscode")
 
 -- { モード, キー, VSCode のコマンド ID, 元の LazyVim での機能 }
 local maps = {
-  -- ファイルツリー (neo-tree)
-  { "n", "<leader>e", "workbench.view.explorer", "Explorer" },
-  { "n", "<leader>E", "workbench.view.explorer", "Explorer" },
-  { "n", "<leader>fe", "workbench.view.explorer", "Explorer" },
-  { "n", "<leader>fE", "workbench.view.explorer", "Explorer" },
+  -- ファイルツリー (neo-tree)。neo-tree と同じく、開いているファイルの位置を選択した状態で開く
+  { "n", "<leader>e", "workbench.files.action.showActiveFileInExplorer", "Explorer" },
+  { "n", "<leader>E", "workbench.files.action.showActiveFileInExplorer", "Explorer" },
+  { "n", "<leader>fe", "workbench.files.action.showActiveFileInExplorer", "Explorer" },
+  { "n", "<leader>fE", "workbench.files.action.showActiveFileInExplorer", "Explorer" },
   { "n", "<leader>be", "workbench.files.action.focusOpenEditorsView", "Buffer Explorer" },
   { "n", "<leader>ge", "workbench.view.scm", "Git Explorer" },
 
