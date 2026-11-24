@@ -12,6 +12,13 @@ end
 
 local vscode = require("vscode")
 
+-- vscode-neovim はメッセージの行数が cmdheight (拡張の既定は 2) を超えると下部の Output パネルを開く。
+-- n / N で検索が見つからないときなどに毎回開いて邪魔なので、10 行までは開かせない
+-- (1 行目はステータスバーに出る。全文は Output の "vscode-neovim messages" か :messages で見る)。
+-- 拡張は require("vscode") の時点で cmdheight = 2 を入れるので、その後に書く
+vim.opt.cmdheight = 10
+vim.opt.shortmess:append("s") -- "search hit BOTTOM, continuing at TOP" を出さない
+
 -- { モード, キー, VSCode のコマンド ID, 元の LazyVim での機能 }
 local maps = {
   -- ファイルツリー (neo-tree)。neo-tree と同じく、開いているファイルの位置を選択した状態で開く
