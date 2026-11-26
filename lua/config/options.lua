@@ -11,6 +11,15 @@ vim.opt.clipboard = ""
 -- 検索がファイル末尾で折り返さない
 vim.opt.wrapscan = false
 
+-- .cpp / .mm / .h はタブ幅 4 (LazyVim の既定は 2)
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.cpp", "*.mm", "*.h" },
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+  end,
+})
+
 -- PowerShell はワイルドカードを展開せず nvim に文字列のまま渡すため、
 -- `nvim *.dmp` が "*.dmp" という名前のファイルを開こうとして E303 になる。起動時に展開し直す
 if vim.fn.has("win32") == 1 then
